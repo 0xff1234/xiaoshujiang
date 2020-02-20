@@ -43,12 +43,15 @@ PcmDispatcher callback -> 业务调用方:线程池从回调队列消费event，
 # 表结构
 # 接口参数
 * pcmCall接口：
+	
 	* url: /pcmCall
-	* method: POST
-	* header: 
-	* body:
-```json!
+	* method: POST 
+~~~?title=request header
+	Content-Type: application/json
+~~~
+```json?title=request body
 {
+    "callback_url": "http://10.50.1.1/xxx",
 	"pcmInfo":{
     "application_number": "GW-A401735000",
     "application_date": "2018-03-24 14:06:57",
@@ -67,5 +70,16 @@ PcmDispatcher callback -> 业务调用方:线程池从回调队列消费event，
       }
     }
   }
+}
+``` 
+```json?title=response body
+{
+    "errorCode" :  0,
+	"errorMsg" : "xxxx",
+	"rawErrorMsg" : "ccccc",
+	"data": {
+		"eventId": "123123123"
+	}
+	
 }
 ``` 
