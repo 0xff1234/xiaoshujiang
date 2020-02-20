@@ -21,10 +21,8 @@ grammar_sequence: true
 ![PcmDispatcher架构图](./attachments/1582188810461.drawio.html)
 
 # PcmDispatcher逻辑时序图
-1. dfdfd
-打发打发
-
-```sequence
+1.
+```sequence?title=服务调用关系图
 业务调用方 -> PcmDispatcher: 调用pcmCall接口
 Note left of PcmDispatcher: 生成event对象（状态为1），存入pcm_call_log表，并加入内部请求队列
 PcmDispatcher -> 业务调用方: 返回event Id
