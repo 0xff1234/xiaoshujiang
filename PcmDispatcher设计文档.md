@@ -3,6 +3,7 @@ title: PcmDispatcher设计文档
 tags: 软件,设计
 renderNumberedHeading: true
 grammar_cjkRuby: true
+grammar_sequence: true
 ---
 
 # 项目背景
@@ -21,12 +22,14 @@ grammar_cjkRuby: true
 
 # PcmDispatcher逻辑时序图
 1. dfdfd
+打发打发
 
-```sequence!?theme=simple 
-小明->小李: 你好 小李, 最近怎么样? 
-Note right of 小李: 小李想了想 
-小李-->小明: 还是老样子 
-``` 
+```sequence
+小明->小李: 你好 小李, 最近怎么样?
+Note right of 小李: 小李想了想
+小李-->小明: 还是老样子
+```
+
 
 # 表结构
 # 接口参数
