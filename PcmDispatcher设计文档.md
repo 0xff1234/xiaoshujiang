@@ -42,3 +42,30 @@ PcmDispatcher callback -> 业务调用方:线程池从回调队列消费event，
 
 # 表结构
 # 接口参数
+* pcmCall接口：
+	* url: /pcmCall
+	* method: POST
+	* header: 
+	* body:
+```json!
+{
+	"pcmInfo":{
+    "application_number": "GW-A401735000",
+    "application_date": "2018-03-24 14:06:57",
+    "request_date": "2018-09-17 19:15:57",
+    "capoperator": "0000447K",
+    "operator": "xdsp",
+    "queryreason": "02",
+    "infos": {
+      "info": {
+        "applicant_nme": "赵六六",
+        "id_card_typ": "0",
+        "id_card_nbr": "123123123123123123",
+        "application_role": "A",
+        "applicant_sex": "M",
+        "date_of_birth": "1982-06-28"
+      }
+    }
+  }
+}
+``` 
