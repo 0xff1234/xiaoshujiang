@@ -25,9 +25,18 @@ grammar_sequence: true
 打发打发
 
 ```sequence
-小明->小李: 你好 小李, 最近怎么样?
-Note right of 小李: 小李想了想
-小李-->小明: 还是老样子
+业务调用方 -> PcmDispatcher: 调用pcmCall接口
+Note left of PcmDispatcher: 生成event对象（状态为1），存入pcm_call_log表，并加入内部请求队列
+PcmDispatcher -> 业务调用方: 返回event Id
+PcmDispatcher -> Pcm服务: 内部线程池从请求队列消费event，调用Pcm
+Pcm服务 -> PcmDispatcher: Pcm返回成功，则event状态为2，失败状态为3，更新db
+Pcm服务 -> PcmDispatcher callback: pcm发送回调
+Note right of PcmDispatcher callback: 从报文中解析出applyno，从db中查询该单号对应的event，修改状态，更新db，发送event到回调队列
+PcmDispatcher callback -> Pcm服务: 回复成功收到回调
+PcmDispatcher callback -> 业务调用方:线程池从回调队列消费event，发送回调消息
+
+业务调用方 -> PcmDispatcher callback: 回复成功接收或失败，修改event状态并更新db
+
 ```
 
 
