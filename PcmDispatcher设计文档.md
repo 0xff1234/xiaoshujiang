@@ -45,7 +45,8 @@ PcmDispatcher callback -> 业务调用方:线程池从回调队列消费event，
 * pcmCall接口：
 	
 	* url: /pcmCall
-	* method: POST 
+	* method: POST
+	* 请求头/请求体/响应体如下：
 ~~~?title=request header
 	Content-Type: application/json
 ~~~
