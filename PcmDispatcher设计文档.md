@@ -36,7 +36,7 @@ PcmDispatcher callback -> 业务调用方:线程池从回调队列消费event，
 业务调用方 -> PcmDispatcher callback: 回复成功接收（状态为6）或失败（状态为7），修改event状态并更新db
 
 ```
-
+# 实体类
 
 # 表结构
 # 接口参数
