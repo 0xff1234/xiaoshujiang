@@ -29,11 +29,11 @@ PcmDispatcher -> 业务调用方: 返回event Id
 PcmDispatcher -> Pcm服务: 内部线程池从请求队列消费event，调用Pcm
 Pcm服务 -> PcmDispatcher: Pcm返回成功，则event状态为2，失败状态为3，更新db
 Pcm服务 -> PcmDispatcher callback: pcm发送回调
-Note right of PcmDispatcher callback: 从报文中解析出applyno，从db中查询该单号对应的event，修改状态，更新db，发送event到回调队列
+Note right of PcmDispatcher callback: 从报文中解析出applyno，从db中查询该单号对应的event，修改状态为4，更新db，发送event到回调队列
 PcmDispatcher callback -> Pcm服务: 回复成功收到回调
-PcmDispatcher callback -> 业务调用方:线程池从回调队列消费event，发送回调消息
+PcmDispatcher callback -> 业务调用方:线程池从回调队列消费event，发送回调消息，状态为5
 
-业务调用方 -> PcmDispatcher callback: 回复成功接收或失败，修改event状态并更新db
+业务调用方 -> PcmDispatcher callback: 回复成功接收（状态为6）或失败（状态为7），修改event状态并更新db
 
 ```
 
