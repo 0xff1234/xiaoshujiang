@@ -146,7 +146,7 @@ State70 --> [*]
 ``` plantuml!
 @startuml
 class BaseEvent {
-  long Id
+  long id
   LocalDateTime createTime
   LocalDateTime updateTime
   Status Status
@@ -217,16 +217,20 @@ enum Status {
 
 | table       		 	| field      | type     | null | default |
 | ------------ | ---------- | -------- | ---- | ------- |
-| pcm_call_log | Id         		| BIGINT   | no   |         |
-|              | create_time 		  | timestamp | no   |    0     |
-|              | update_time 		 | timestamp | no |    0     |
+| pcm_call_log | id         		| BIGINT   | no   |         |
+|              | createTime 		  | timestamp | no   |    0     |
+|              | updateTime 		 | timestamp | no |    0     |
 |              |  status|   int  		 |  no  |  0     |
-|              |  callback_url  	   |  char(255)        |  no    |  ''      |
-|              |    tracking_id        | char(255)         | no     |  ''       |
+|              |  callbackUrl  	   |  char(255)        |  no    |  ''      |
+|              |    trackingId        | char(255)         | no     |  ''       |
 |              |  callPriority         |  int        |    no  |    50     |
-|              |            |          |      |         |
-|              |            |          |      |         |
-|              |            |          |      |         |
+|              |    busiReqBody        |   VARCHAR       |   no   |  ''       |
+|              |   PcmCallXml         |    VARCHAR      |   no    |   ''      |
+|              |    callBackPriority        |  int        |    no  |   50      |
+|              |    callbackBusiRetry        |  int        |    no  |   0      |
+|              |    pcmCallbackXml        |  VARCHAR        |    no  |   ''      |
+|              |    busiCallbackBody        |  VARCHAR        |    no  |   ''      |
+
 
 # 接口参数
 * pcmCall接口：
