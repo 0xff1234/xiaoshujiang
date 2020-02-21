@@ -59,6 +59,27 @@ stop
 @enduml
 ``` 
 
+``` plantuml!title=pcm回调接收逻辑及回调业务方逻辑 
+@startuml
+|业务调用方|
+start
+-> 调用pcmcall查询征信;
+|#AntiqueWhite|PcmDispatcher|
+:验证查询报文，生成pcm调用Event对象(内部包含回调地址和查询请求);
+:将pcm调用Evnet对象存入pcm查询队列;
+:将pcm调用Evnet对象存入pcm_call_log表;
+detach;
+|进程内Threadpool|
+:从pcm查询队列消费event;
+:从event中获取查询参数，封装报文请求pcm接口;
+|#AntiqueWhite|pcm|
+:pcm征信查询接口;
+|进程内Threadpool|
+:根据返回值修改pcm_call_log表的状态;
+stop
+@enduml
+``` 
+
 # 实体类
 
 # 表结构
