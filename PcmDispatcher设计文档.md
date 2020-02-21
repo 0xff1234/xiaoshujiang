@@ -37,8 +37,8 @@ PcmDispatcher callback -> 业务调用方:线程池从回调队列消费event，
 业务调用方 -> PcmDispatcher callback: 回复成功接收（状态为6）或失败（状态为7），修改event状态并更新db
 
 ```
-2. 回调地址记录和查询逻辑
-``` plantuml!title=业务端pcmcall调用逻辑 
+2. 业务端pcmcall调用流程图
+``` plantuml!
 @startuml
 |业务调用方|
 start
@@ -58,24 +58,52 @@ detach;
 stop
 @enduml
 ``` 
-
-``` plantuml!title=pcm回调接收逻辑及回调业务方逻辑 
+3. pcm回调接收逻辑及回调业务方流程图 
+``` plantuml!
 @startuml
-|业务调用方|
+|Pcm|
 start
--> 调用pcmcall查询征信;
-|#AntiqueWhite|PcmDispatcher|
-:验证查询报文，生成pcm调用Event对象(内部包含回调地址和查询请求);
-:将pcm调用Evnet对象存入pcm查询队列;
-:将pcm调用Evnet对象存入pcm_call_log表;
-detach;
+-> 回调Pcm Dispatcher;
+|#AntiqueWhite|PcmD Callback Serivce|
+:解析回调报文，提取applyno;
+if (提取applyno成功) then
+  -[#red]-> 成功;
+  :根据applyno查询pcm_call_log表，从中反序列化成回调event对象;
+  if (查得event对象) then
+    -> 查得;
+    :修改event对象的状态为接收到pcm回调，并同步更新pcm_call_log表;
+    #HotPink:发送回调event对象到回调队列;
+    :返回pcm成功接收标识;
+    detach
+  else
+    -[#black,dotted]->
+    :记录错误日志;
+    :忽略，返回pcm成功接收标识;
+    detach
+  endif
+else
+  -[#black,dotted]->
+  :记录错误日志;
+  :返回pcm成功接收标识;
+  detach
+endif
+
 |进程内Threadpool|
-:从pcm查询队列消费event;
-:从event中获取查询参数，封装报文请求pcm接口;
-|#AntiqueWhite|pcm|
-:pcm征信查询接口;
+:从回调队列消费event;
+:从event中获取回调参数，封装报文回调业务调用方;
+|#AntiqueWhite|业务调用方|
+:接收回调服务;
 |进程内Threadpool|
-:根据返回值修改pcm_call_log表的状态;
+if (返回结果) then
+    -> 成功;
+    #HotPink:修改event对象的状态为回调成功，并同步更新pcm_call_log表;
+    
+  else
+    -> 失败 或 异常;
+    -[#black,dotted]->
+    #HotPink:修改event对象的状态为回调失败，并同步更新pcm_call_log表;
+    
+  endif
 stop
 @enduml
 ``` 
