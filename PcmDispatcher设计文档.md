@@ -153,6 +153,7 @@ class BaseEvent {
 }
 
 class PcmCallEvent {
+  int callPcmRetry
   String callbackUrl
   String busiReqBody
   String PcmCallXml
@@ -160,6 +161,7 @@ class PcmCallEvent {
 }
 
 class PcmCallBackEvent {
+  int callbackBusiRetry
   String callbackUrl
   String pcmCallbackXml
   String busiCallbackBody
@@ -210,8 +212,9 @@ enum Status {
 @enduml
 ```
 
-
 # 表结构
+
+
 # 接口参数
 * pcmCall接口：
 	
