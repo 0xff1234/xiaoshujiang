@@ -277,6 +277,32 @@ enum Status {
 }
 ```
 
-```plantuml! 
-  Bob->Alice : hello 
-  ``` 
+* pcmCallback接口：
+	
+	* url:  callback_url的值
+	* method: POST
+	* 请求头/请求体/响应体如下：
+~~~?title=request header
+	Content-Type: application/json
+~~~
+```json?title=request body(发送的回调报文)
+{
+    "eventId": "123123123",
+    "tracking_id": "123123123123",
+	"pcmResult":{
+    "application_number": "GW-A401735000",
+    "application_role": [
+		"A", "B", "C"
+	],
+    
+  }
+}
+``` 
+```json?title=response body
+{
+    "errorCode" :  0,
+	"errorMsg" : "xxxx",
+	"rawErrorMsg" : "ccccc",	
+}
+```
+
