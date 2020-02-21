@@ -146,26 +146,31 @@ State70 --> [*]
 ``` plantuml!
 @startuml
 class BaseEvent {
-  long id
+  long Id
   LocalDateTime createTime
   LocalDateTime updateTime
   Status Status
+  String callbackUrl
   String trackingId
 }
 
 class PcmCallEvent {
+  int callPriority
   int callPcmRetry
-  String callbackUrl
   String busiReqBody
-  String PcmCallXml
+  String pcmCallRequestXml
+  String pcmCallResponseXml
+  LocalDateTime pcmCallTime
   BusiPcmCallInfo pcmCallInfo (非持久化属性)
 }
 
 class PcmCallBackEvent {
+  int callBackPriority
   int callbackBusiRetry
-  String callbackUrl
-  String pcmCallbackXml
+  String pcmCallbackRequestXml
+  String pcmCallbackResponseXml
   String busiCallbackBody
+  LocalDateTime pcmCallbackTime
   BusiCallBackInfo busiCallBackInfo (非持久化属性)
 }
 
@@ -225,10 +230,14 @@ enum Status {
 |              |    trackingId        | char(255)         | no     |  ''       |
 |              |  callPriority         |  int        |    no  |    50     |
 |              |    busiReqBody        |   VARCHAR       |   no   |  ''       |
-|              |   PcmCallXml         |    VARCHAR      |   no    |   ''      |
+|              |   pcmCallRequestXml         |    VARCHAR      |   no    |   ''      |
+|              |   pcmCallResponseXml         |    VARCHAR      |   no    |   ''      |
+|              |   pcmCallTime         |    timestamp      |   no    |   0      |
 |              |    callBackPriority        |  int        |    no  |   50      |
 |              |    callbackBusiRetry        |  int        |    no  |   0      |
-|              |    pcmCallbackXml        |  VARCHAR        |    no  |   ''      |
+|              |    pcmCallbackRequestXml        |  VARCHAR        |    no  |   ''      |
+|              |    pcmCallbackResponseXml        |  VARCHAR        |    no  |   ''      |
+|              |    pcmCallbackTime        |  timestamp        |    no  |   0      |
 |              |    busiCallbackBody        |  VARCHAR        |    no  |   ''      |
 
 
