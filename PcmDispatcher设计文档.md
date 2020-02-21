@@ -147,6 +147,7 @@ State70 --> [*]
 @startuml
 class BaseEvent {
   long Id
+  String applyno
   LocalDateTime createTime
   LocalDateTime updateTime
   Status Status
@@ -223,6 +224,7 @@ enum Status {
 | table       		 	| field      | type     | null | default |
 | ------------ | ---------- | -------- | ---- | ------- |
 | pcm_call_log | id         		| BIGINT   | no   |         |
+| 			   |	 applyno         		| char   | no   |  ''       |
 |              | createTime 		  | timestamp | no   |    0     |
 |              | updateTime 		 | timestamp | no |    0     |
 |              |  status|   int  		 |  no  |  0     |
