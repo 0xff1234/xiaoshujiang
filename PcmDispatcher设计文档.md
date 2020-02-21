@@ -107,6 +107,39 @@ if (返回结果) then
 stop
 @enduml
 ``` 
+4. pcm调用状态转换图
+``` plantuml!
+@startuml
+[*] --> State10
+State10 : 接收到业务端pcmcall请求
+State10 -> State15
+
+State15 :pcmcall事件加入pcm调用请求队列
+State15 -> State20
+
+State20 : pcmcall事件被消费，调用Pcm查询接口
+State20 -> State30
+State20 -> State40
+
+State30 : pcm查询成功
+State30 -> State50
+
+State50 : 接收到pcm回调
+State50 -> State60
+State50-> State70
+
+State60 : 回调业务方成功
+State60 --> [*]
+
+State70 : 回调业务方失败
+State70 -> State15
+
+
+State40 : pcm查询失败
+
+State40 --> [*]
+@enduml
+```
 
 # 实体类
 
