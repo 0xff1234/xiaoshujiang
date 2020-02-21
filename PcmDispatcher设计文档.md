@@ -21,8 +21,8 @@ grammar_plantuml: true
 
 ![PcmDispatcher架构图](./attachments/1582188810461.drawio.html)
 
-# PcmDispatcher逻辑时序图
-1.
+# 关键设计
+1. PcmDispatcher整体调用逻辑时序图
 ```sequence?title=服务调用关系图
 业务调用方 -> PcmDispatcher: 调用pcmCall接口
 Note left of PcmDispatcher: 生成event对象（状态为1），存入pcm_call_log表，并加入内部请求队列
@@ -37,6 +37,28 @@ PcmDispatcher callback -> 业务调用方:线程池从回调队列消费event，
 业务调用方 -> PcmDispatcher callback: 回复成功接收（状态为6）或失败（状态为7），修改event状态并更新db
 
 ```
+2. 回调地址记录和查询逻辑
+``` plantuml!title=业务端pcmcall调用逻辑 
+@startuml
+|业务调用方|
+start
+-> 调用pcmcall查询征信;
+|#AntiqueWhite|PcmDispatcher|
+:验证查询报文，生成pcm调用Event对象(内部包含回调地址和查询请求);
+:将pcm调用Evnet对象存入pcm查询队列;
+:将pcm调用Evnet对象存入pcm_call_log表;
+detach;
+|进程内Threadpool|
+:从pcm查询队列消费event;
+:从event中获取查询参数，封装报文请求pcm接口;
+|#AntiqueWhite|pcm|
+:pcm征信查询接口;
+|进程内Threadpool|
+:根据返回值修改pcm_call_log表的状态;
+stop
+@enduml
+``` 
+
 # 实体类
 
 # 表结构
@@ -82,4 +104,8 @@ PcmDispatcher callback -> 业务调用方:线程池从回调队列消费event，
 	}
 	
 }
-``` 
+```
+
+```plantuml! 
+  Bob->Alice : hello 
+  ``` 
