@@ -153,10 +153,10 @@ class BaseEvent {
   Status Status
   String callbackUrl
   String trackingId
+  int priority
 }
 
 class PcmCallEvent {
-  int callPriority
   int callPcmRetry
   String busiReqBody
   String pcmCallRequestXml
@@ -166,7 +166,6 @@ class PcmCallEvent {
 }
 
 class PcmCallBackEvent {
-  int callBackPriority
   int callbackBusiRetry
   String pcmCallbackRequestXml
   String pcmCallbackResponseXml
@@ -230,12 +229,11 @@ enum Status {
 |              |  status|   int  		 |  no  |  0     |
 |              |  callbackUrl  	   |  char(255)        |  no    |  ''      |
 |              |    trackingId        | char(255)         | no     |  ''       |
-|              |  callPriority         |  int        |    no  |    50     |
+|              |  priority         |  int        |    no  |    50     |
 |              |    busiReqBody        |   VARCHAR       |   no   |  ''       |
 |              |   pcmCallRequestXml         |    VARCHAR      |   no    |   ''      |
 |              |   pcmCallResponseXml         |    VARCHAR      |   no    |   ''      |
 |              |   pcmCallTime         |    timestamp      |   no    |   0      |
-|              |    callBackPriority        |  int        |    no  |   50      |
 |              |    callbackBusiRetry        |  int        |    no  |   0      |
 |              |    pcmCallbackRequestXml        |  VARCHAR        |    no  |   ''      |
 |              |    pcmCallbackResponseXml        |  VARCHAR        |    no  |   ''      |
@@ -256,6 +254,7 @@ enum Status {
 {
     "tracking_id": "123123123123",
     "callback_url": "http://10.50.1.1/xxx",
+	"priority" : 50,
 	"pcmInfo":{
     "application_number": "GW-A401735000",
     "application_date": "2018-03-24 14:06:57",
