@@ -146,7 +146,7 @@ State70 --> [*]
 ``` plantuml!
 @startuml
 class BaseEvent {
-  String Id
+  long Id
   LocalDateTime createTime
   LocalDateTime updateTime
   Status Status
@@ -214,6 +214,18 @@ enum Status {
 
 # 表结构
 
+| table        | field      | type     | null | default |
+| ------------ | ---------- | -------- | ---- | ------- |
+| pcm_call_log | Id         | BIGINT   | no   |         |
+|              | createTime | datetime | no   |         |
+|              |            |          |      |         |
+|              |            |          |      |         |
+|              |            |          |      |         |
+|              |            |          |      |         |
+|              |            |          |      |         |
+|              |            |          |      |         |
+|              |            |          |      |         |
+|              |            |          |      |         |
 
 # 接口参数
 * pcmCall接口：
