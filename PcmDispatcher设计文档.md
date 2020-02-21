@@ -150,6 +150,7 @@ class BaseEvent {
   LocalDateTime createTime
   LocalDateTime updateTime
   Status Status
+  String trackingId
 }
 
 class PcmCallEvent {
@@ -214,15 +215,15 @@ enum Status {
 
 # 表结构
 
-| table        | field      | type     | null | default |
+| table       		 	| field      | type     | null | default |
 | ------------ | ---------- | -------- | ---- | ------- |
-| pcm_call_log | Id         | BIGINT   | no   |         |
-|              | createTime | datetime | no   |         |
-|              |            |          |      |         |
-|              |            |          |      |         |
-|              |            |          |      |         |
-|              |            |          |      |         |
-|              |            |          |      |         |
+| pcm_call_log | Id         		| BIGINT   | no   |         |
+|              | create_time 		  | timestamp | no   |    0     |
+|              | update_time 		 | timestamp | no |    0     |
+|              |  status|   int  		 |  no  |  0     |
+|              |  callback_url  	   |  char(255)        |  no    |  ''      |
+|              |    tracking_id        | char(255)         | no     |  ''       |
+|              |  callPriority         |  int        |    no  |    50     |
 |              |            |          |      |         |
 |              |            |          |      |         |
 |              |            |          |      |         |
