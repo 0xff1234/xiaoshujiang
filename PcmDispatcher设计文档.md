@@ -141,7 +141,75 @@ State70 --> [*]
 @enduml
 ```
 
-# 实体类
+# 实体类图
+
+``` plantuml!
+@startuml
+class BaseEvent {
+  String Id
+  LocalDateTime createTime
+  LocalDateTime updateTime
+  Status Status
+}
+
+class PcmCallEvent {
+  String callbackUrl
+  String busiReqBody
+  String PcmCallXml
+  BusiPcmCallInfo pcmCallInfo (非持久化属性)
+}
+
+class PcmCallBackEvent {
+  String callbackUrl
+  String pcmCallbackXml
+  String busiCallbackBody
+  BusiCallBackInfo busiCallBackInfo (非持久化属性)
+}
+
+class BusiCallBackInfo{
+  String application_number
+  String[] roles 
+}
+
+class BusiPcmCallInfo{
+  String application_number
+  String application_date
+  String request_date
+  String capoperator
+  String operator
+  String queryreason
+  PeopleInfo[] infos 
+}
+
+class PeopleInfo{
+  String applicant_nme
+  String id_card_typ
+  String id_card_nbr
+  String application_role
+  String applicant_sex
+  String date_of_birth
+}
+
+BusiPcmCallInfo "1" o-- "many" PeopleInfo
+PcmCallEvent <|-- BaseEvent
+PcmCallEvent "1" *-- "1" BusiPcmCallInfo
+
+PcmCallBackEvent <|-- BaseEvent
+PcmCallBackEvent "1" *-- "1" BusiCallBackInfo
+
+enum Status {
+  State10
+  State15
+  State20
+  State30
+  State40
+  State50
+  State60
+  State70
+}
+@enduml
+```
+
 
 # 表结构
 # 接口参数
