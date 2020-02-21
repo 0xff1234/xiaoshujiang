@@ -58,8 +58,8 @@ PcmDispatcher callback -> 业务调用方:线程池从回调队列消费event，
     "capoperator": "0000447K",
     "operator": "xdsp",
     "queryreason": "02",
-    "infos": {
-      "info": {
+    "infos": [
+       {
         "applicant_nme": "赵六六",
         "id_card_typ": "0",
         "id_card_nbr": "123123123123123123",
@@ -67,7 +67,7 @@ PcmDispatcher callback -> 业务调用方:线程池从回调队列消费event，
         "applicant_sex": "M",
         "date_of_birth": "1982-06-28"
       }
-    }
+    ]
   }
 }
 ``` 
