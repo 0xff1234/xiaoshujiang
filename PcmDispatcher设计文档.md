@@ -121,6 +121,10 @@ State20 : pcmcall事件被消费，调用Pcm查询接口
 State20 -> State30
 State20 -> State40
 
+State40 : pcm查询失败
+State40 -> State15
+State40 --> [*]
+
 State30 : pcm查询成功
 State30 -> State50
 
@@ -133,11 +137,7 @@ State60 --> [*]
 
 State70 : 回调业务方失败
 State70 -> State15
-
-
-State40 : pcm查询失败
-
-State40 --> [*]
+State70 --> [*]
 @enduml
 ```
 
