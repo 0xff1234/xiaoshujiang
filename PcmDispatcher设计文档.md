@@ -243,6 +243,7 @@ enum Status {
 ~~~
 ```json?title=request body
 {
+    "tracking_id": "123123123123",
     "callback_url": "http://10.50.1.1/xxx",
 	"pcmInfo":{
     "application_number": "GW-A401735000",
