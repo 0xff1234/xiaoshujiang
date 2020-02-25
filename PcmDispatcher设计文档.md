@@ -239,11 +239,13 @@ enum Status {
 |              |   pcmCallRequestXml         |    VARCHAR      |   no    |   ''      |
 |              |   pcmCallResponseXml         |    VARCHAR      |   no    |   ''      |
 |              |   pcmCallTime         |    timestamp      |   no    |   0      |
+|              |    pcmCallRetry        |  int        |    no  |   0      |
 |              |    callbackBusiRetry        |  int        |    no  |   0      |
 |              |    pcmCallbackRequestXml        |  VARCHAR        |    no  |   ''      |
 |              |    pcmCallbackResponseXml        |  VARCHAR        |    no  |   ''      |
 |              |    pcmCallbackTime        |  timestamp        |    no  |   0      |
 |              |    busiCallbackBody        |  VARCHAR        |    no  |   ''      |
+|              |    busiCallbackResponseBody        |  VARCHAR        |    no  |   ''      |
 
 
 # 接口参数
