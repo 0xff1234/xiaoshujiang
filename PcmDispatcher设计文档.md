@@ -129,14 +129,18 @@ State30 : pcm查询成功
 State30 -> State50
 
 State50 : 接收到pcm回调
-State50 -> State60
-State50-> State70
+State50 -> State55
+
+
+State55 : 回调请求加入回调队列
+State55 -> State60
+State55-> State70
 
 State60 : 回调业务方成功
 State60 --> [*]
 
 State70 : 回调业务方失败
-State70 -> State15
+State70 -> State55
 State70 --> [*]
 @enduml
 ```
@@ -212,6 +216,7 @@ enum Status {
   State30
   State40
   State50
+  State55
   State60
   State70
 }
