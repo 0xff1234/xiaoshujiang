@@ -112,17 +112,10 @@ stop
 @startuml
 [*] --> State10
 State10 : 接收到业务端pcmcall请求
-State10 -> State15
-
-State15 :pcmcall事件加入pcm调用请求队列
-State15 -> State20
-
-State20 : pcmcall事件被消费，调用Pcm查询接口
-State20 -> State30
-State20 -> State40
+State10 -> State30
+State10 -> State40
 
 State40 : pcm查询失败
-State40 -> State15
 State40 --> [*]
 
 State30 : pcm查询成功
