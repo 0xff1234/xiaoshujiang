@@ -244,7 +244,7 @@ enum Status {
 # 接口参数
 * pcmCall接口：
 	
-	* url: http://10.50.135.121:10101/pcmCall
+	* url（一代测试）: http://10.50.135.121:10101/pcmCall
 	* method: POST
 	* 请求头/请求体/响应体如下：
 ~~~?title=request header
