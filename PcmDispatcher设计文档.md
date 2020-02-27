@@ -244,7 +244,7 @@ enum Status {
 # 接口参数
 * pcmCall接口：
 	
-	* url: /pcmCall
+	* url: http://10.50.135.121:10101/pcmCall
 	* method: POST
 	* 请求头/请求体/响应体如下：
 ~~~?title=request header
@@ -253,26 +253,26 @@ enum Status {
 ```json?title=request body
 {
     "tracking_id": "123123123123",
-    "callback_url": "http://10.50.1.1/xxx",
-	"priority" : 50,
-	"pcmInfo":{
-    "application_number": "GW-A401735000",
-    "application_date": "2018-03-24 14:06:57",
-    "request_date": "2018-09-17 19:15:57",
-    "capoperator": "0000447K",
-    "operator": "xdsp",
-    "queryreason": "02",
-    "infos": [
-       {
-        "applicant_nme": "赵六六",
-        "id_card_typ": "0",
-        "id_card_nbr": "123123123123123123",
-        "application_role": "A",
-        "applicant_sex": "M",
-        "date_of_birth": "1982-06-28"
-      }
-    ]
-  }
+    "callback_url": "http://10.50.135.121:10101/mockSucc",
+    "priority": 50,
+    "pcmInfo": {
+        "application_number": "GW-B100001341",
+        "application_date": "2018-03-24 14:06:57",
+        "request_date": "2018-09-17 19:15:57",
+        "capoperator": "0000447K",
+        "operator": "xdsp",
+        "queryreason": "02",
+        "infos": [
+            {
+                "applicant_nme": "士大夫",
+                "id_card_typ": "0",
+                "id_card_nbr": "110104199501090102",
+                "application_role": "A",
+                "applicant_sex": "F",
+                "date_of_birth": "1982-06-28"
+            }
+        ]
+    }
 }
 ``` 
 ```json?title=response body
@@ -297,22 +297,21 @@ enum Status {
 ~~~
 ```json?title=request body(发送的回调报文)
 {
-    "eventId": "123123123",
-    "tracking_id": "123123123123",
-	"pcmResult":{
-    "application_number": "GW-A401735000",
-    "application_role": [
-		"A", "B", "C"
-	],
-    
-  }
-}
+    "eventId":"56496097172347456",
+    "pcmResult":{
+        "application_number":"GW-B100001341",
+        "application_role":[
+            "A"
+        ]
+    },
+    "tracking_id":""
+}       
 ``` 
 ```json?title=response body
 {
     "errorCode" :  0,
-	"errorMsg" : "xxxx",
-	"rawErrorMsg" : "ccccc",	
+	"errorMsg" : "",
+	"rawErrorMsg" : "",	
 }
 ```
 
