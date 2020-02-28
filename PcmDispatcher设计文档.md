@@ -149,7 +149,7 @@ class BaseEvent {
   LocalDateTime updateTime
   Status Status
   String callbackUrl
-  String trackingId
+  Map userdata
   int priority
 }
 
@@ -226,7 +226,7 @@ enum Status {
 |              | updateTime 		 | timestamp | no |    0     |
 |              |  status|   int  		 |  no  |  0     |
 |              |  callbackUrl  	   |  char(255)        |  no    |  ''      |
-|              |    trackingId        | char(255)         | no     |  ''       |
+|              |    userdata        | varchar(1000)         | no     |  ''       |
 |              |  priority         |  int        |    no  |    50     |
 |              |    busiReqBody        |   VARCHAR       |   no   |  ''       |
 |              |   pcmCallRequestXml         |    VARCHAR      |   no    |   ''      |
@@ -252,7 +252,10 @@ enum Status {
 ~~~
 ```json?title=request body
 {
-    "tracking_id": "123123123123",
+    "userdata": {
+        "aaa": "bbbb",
+        "cccc": "dddd"
+    },
     "callback_url": "http://10.50.135.121:10101/mockSucc",
     "priority": 50,
     "pcmInfo": {
@@ -297,15 +300,21 @@ enum Status {
 ~~~
 ```json?title=request body(发送的回调报文)
 {
-    "eventId":"56496097172347456",
+    "errorCode":0,
+    "errorMsg":"",
+    "rawErrorMsg":"",
+    "eventId":"57160200635025824",
+    "userdata":{
+        "aaa":"bbbb",
+        "cccc":"dddd"
+    },
     "pcmResult":{
         "application_number":"GW-B100001341",
         "application_role":[
             "A"
         ]
-    },
-    "tracking_id":""
-}       
+    }
+}   
 ``` 
 ```json?title=response body
 {
