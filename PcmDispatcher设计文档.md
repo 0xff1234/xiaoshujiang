@@ -158,6 +158,7 @@ class BaseEvent {
   String callbackUrl
   Map userdata
   int priority
+  int pcmVersion
 }
 
 class PcmCallEvent {
@@ -246,12 +247,14 @@ enum Status {
 |              |    pcmCallbackTime        |  timestamp        |    no  |   0      |
 |              |    busiCallbackBody        |  VARCHAR        |    no  |   ''      |
 |              |    busiCallbackResponseBody        |  VARCHAR        |    no  |   ''      |
+|              |    pcmVersion        |  int        |    no  |   1      |
+
 
 
 # 接口参数
 * pcmCall接口：
 	
-	* url（一代测试）: http://10.50.135.121:10101/pcmCall
+	* url（一代测试）: http://10.50.135.121:10101/dispatcher/pcmCall
 	* method: POST
 	* 请求头/请求体/响应体如下：
 ~~~?title=request header
@@ -259,11 +262,12 @@ enum Status {
 ~~~
 ```json?title=request body
 {
+	"pcmVersion": 1,    //1：表示查询一代，2：表示查询二代
     "userdata": {
         "aaa": "bbbb",
         "cccc": "dddd"
     },
-    "callback_url": "http://10.50.135.121:10101/mockSucc",
+    "callback_url": "http://10.50.135.121:10101/mockSucc",      //如果为"func1"，则调用1代回调服务，如果为"func2"，则调用二代回调服务，其他值视为url通过网络进行回调
     "priority": 50,
     "pcmInfo": {
         "application_number": "GW-B100001341",
