@@ -267,7 +267,7 @@ enum Status {
         "aaa": "bbbb",
         "cccc": "dddd"
     },
-    "callback_url": "http://10.50.135.121:10101/mockSucc",      //如果为"func1"，则调用1代回调服务，如果为"func2"，则调用二代回调服务，其他值视为url通过网络进行回调
+    "callback_url": "http://10.50.135.121:10101/dispatcher/mockSucc",      //如果为"func1"，则调用1代回调服务，如果为"func2"，则调用二代回调服务，其他值视为url通过网络进行回调
     "priority": 50,
     "pcmInfo": {
         "application_number": "GW-B100001341",
