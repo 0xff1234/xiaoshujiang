@@ -20,7 +20,7 @@ grammar_plantuml: true
 
 
 # 解决方案
-1. 为原始Pcm系统的调用和回调接口封装一个代理层服务——PcmDispatcher，用于被多个调用方调用并可以回调多个调用方，内部采用pcm_call_log来记录每个回调的地址，并基于单号和回调时间，进行匹配，匹配后发送回调
+1. 为原始Pcm系统的调用和回调接口封装一个代理层服务——PcmDispatcher，用于被多个调用方调用并可以回调多个调用方，内部采用pcm_call_log来记录每个回调的地址，并基于单号和pcm版本，进行匹配，匹配后发送回调
 
 ![PcmDispatcher架构图](./attachments/1582188810461.drawio.html)
 
